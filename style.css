@@ -1,0 +1,49 @@
+body {
+    width: 300px;
+    height: 400px;
+}
+div {
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: black;
+}
+
+.display {
+    height: 100px;
+    background-color: white;
+}
+
+.calcContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    border-radius: 50%;
+    color: rgb(9, 118, 161);
+}
+
+.row-one {
+    
+}
+
+.row-two {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-three {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-four {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-five {
+    display: flex;
+    flex-direction: row;
+}
