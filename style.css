@@ -23,14 +23,28 @@ div {
 .calcContainer {
     display: flex;
     flex-direction: column;
+    border-color: grey;
+    border-style: solid;
+    border-width: 6px;
 }
 
 button {
-    border-radius: 50%;
-    background-color: aquamarine;
-    color: black;
+    border-radius: 30%;
+    background-color: grey;
+    color: white;
     width: 60px;
     height: 50px;
+    font-size: large;
+}
+
+.clear,
+.plus-minus,
+.percent {
+    background-color: lightgrey;
+}
+
+.operator {
+    background-color: orange;
 }
 
 .row-one {
