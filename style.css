@@ -18,6 +18,11 @@ div {
     border: 4px;
     border-color: black;
     border-style: solid;
+    background-color: black;
+}
+
+.currentNumber {
+    color: white;
 }
 
 .calcContainer {
@@ -43,7 +48,8 @@ button {
     background-color: lightgrey;
 }
 
-.operator {
+.operator,
+.equal {
     background-color: orange;
 }
 
