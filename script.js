@@ -6,13 +6,19 @@ const currentDisplayNum = document.querySelector(".currentNumber");
 const prevDisplayNum = document.querySelector(".previousNumber");
 
 const clear = document.querySelector(".clear");
+clear.addEventListener("click", clearCalc);
+
 const plusMinus = document.querySelector(".plus-minus");
 const percentage = document.querySelector(".percent");
 const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const decimal = document.querySelector(".decimal");
 const equal = document.querySelector(".equal");
-equal.addEventListener("click", calc);
+equal.addEventListener("click", () => {
+    if(currentNum!= "" && prevNum != "") {
+        calc();
+    }
+});
 
 numberButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -21,9 +27,10 @@ numberButtons.forEach((btn) => {
 });
 
 function handleNumber(num) {
-    currentNum += num;
-    currentDisplayNum.textContent = currentNum;
-}
+    if(currentNum.length <= 10) {
+        currentNum += num;
+        currentDisplayNum.textContent = currentNum;
+    }
 
 operators.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -44,14 +51,36 @@ function calc() {
     currentNum = Number(currentNum);
 
     if(operator === "+") {
-        prevNum = prevNum + currentNum;
+        prevNum += currentNum;
     } else if(operator === "-") {
-        prevNum = prevNum - currentNum;
+        prevNum -= currentNum;
     } else if(operator === "X") {
-        prevNum = prevNum * currentNum;
+        prevNum *= currentNum;
     } else if(operator === "÷") {
-        prevNum = prevNum / currentNum;
+        if(currentNum <= 0) {
+            prevNum = "Error";
+            results();
+            return;
+        }
+        prevNum /= currentNum;
     }
+    prevNum = prevNum.toString();
+    results();
+}
+
+function results() {
     prevDisplayNum.textContent = "";
-    currentDisplayNum.textContent = prevNum;
+    operator = "";
+    if(prevNum.length <= 10) {
+        currentDisplayNum.textContent = prevNum;
+    } else {
+        currentDisplayNum.textContent = prevNum.slice(0, 11) + "...";
+    }
+}
+
+function clearCalc() {
+    currentNum = "";
+    prevNum = "";
+    currentDisplayNum = "0";
+    prevDisplayNum = "";
 }
