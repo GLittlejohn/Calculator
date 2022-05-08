@@ -21,7 +21,8 @@ div {
     background-color: black;
 }
 
-.currentNumber {
+.currentNumber,
+.previousNumber {
     color: white;
 }
 
