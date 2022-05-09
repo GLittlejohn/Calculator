@@ -17,11 +17,18 @@ function clearCalc() {
 
 
 const plusMinus = document.querySelector(".plus-minus");
+plusMinus.addEventListener("click", posNeg)
+
+function posNeg() {
+    currentNum = -1 * currentNum
+    currentDisplayNum.textContent = currentNum
+}
+
 const percentage = document.querySelector(".percent");
 percentage.addEventListener("click", percent);
 
 function percent() {
-    let tempNum = currentNum / 100;
+    let tempNum = currentNum / 100; 
     currentDisplayNum.textContent = tempNum;
 }
 const numberButtons = document.querySelectorAll(".number");
@@ -57,13 +64,14 @@ function calc() {
 }
 
 function results() {
-    prevDisplayNum.textContent = "";
-    operator = "";
     if(prevNum.length <= 10) {
         currentDisplayNum.textContent = prevNum;
     } else {
         currentDisplayNum.textContent = prevNum.slice(0, 11) + "...";
     }
+    prevDisplayNum.textContent = "";
+    operator = "";
+    currentNum = "";
 }
 
 numberButtons.forEach((btn) => {
@@ -73,6 +81,10 @@ numberButtons.forEach((btn) => {
 });
 
 function handleNumber(num) {
+    if(prevNum !== "" && currentNum !== "" && operator === "") {
+        prevNum = "";
+        currentDisplayNum.textContent = currentNum;
+    }
     if(currentNum.length <= 10) {
         currentNum += num;
         currentDisplayNum.textContent = currentNum;
@@ -85,10 +97,23 @@ operators.forEach((btn) => {
 });
 
 function handleOperator(op) {
-    operator = op;
-    prevNum = currentNum;
-    prevDisplayNum.textContent = prevNum + " " + operator;
+    if(prevNum === "") {
+        prevNum = currentNum;
+        operatorCheck(op);
+    } else if(currentNum === "") {
+        operatorCheck(op);
+    } else {
+        calc();
+        operator = op;
+        currentDisplayNum.textContent = "0";
+        prevDisplayNum.textContent = prevNum + " " + operator;
+    }
+}
+
+function operatorCheck(text) {
+    operator = text
+    prevDisplayNum.textContent = (prevNum + " " + operator);
+    currentDisplayNum.textContent = "0";
     currentNum ="";
-    currentDisplayNum.textContent = "";
 }
 }
