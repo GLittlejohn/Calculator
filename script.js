@@ -8,8 +8,22 @@ const prevDisplayNum = document.querySelector(".previousNumber");
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", clearCalc);
 
+function clearCalc() {
+    currentNum = "";
+    prevNum = "";
+    currentDisplayNum.textContent = "0";
+    prevDisplayNum.textContent = "";
+}
+
+
 const plusMinus = document.querySelector(".plus-minus");
 const percentage = document.querySelector(".percent");
+percentage.addEventListener("click", percent);
+
+function percent() {
+    let tempNum = currentNum / 100;
+    currentDisplayNum.textContent = tempNum;
+}
 const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const decimal = document.querySelector(".decimal");
@@ -20,38 +34,12 @@ equal.addEventListener("click", () => {
     }
 });
 
-numberButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        handleNumber(e.target.textContent);
-    });
-});
-
-function handleNumber(num) {
-    if(currentNum.length <= 10) {
-        currentNum += num;
-        currentDisplayNum.textContent = currentNum;
-    }
-
-operators.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        handleOperator(e.target.textContent);
-    })
-});
-
-function handleOperator(op) {
-    operator = op;
-    prevNum = currentNum;
-    prevDisplayNum.textContent = prevNum + " " + operator;
-    currentNum ="";
-    currentDisplayNum.textContent = "";
-}
-
 function calc() {
     prevNum = Number(prevNum);
     currentNum = Number(currentNum);
 
     if(operator === "+") {
-        prevNum += currentNum;
+        prevNum += currentNum
     } else if(operator === "-") {
         prevNum -= currentNum;
     } else if(operator === "X") {
@@ -78,9 +66,29 @@ function results() {
     }
 }
 
-function clearCalc() {
-    currentNum = "";
-    prevNum = "";
-    currentDisplayNum = "0";
-    prevDisplayNum = "";
+numberButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        handleNumber(e.target.textContent);
+    });
+});
+
+function handleNumber(num) {
+    if(currentNum.length <= 10) {
+        currentNum += num;
+        currentDisplayNum.textContent = currentNum;
+    }
+
+operators.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        handleOperator(e.target.textContent);
+    })
+});
+
+function handleOperator(op) {
+    operator = op;
+    prevNum = currentNum;
+    prevDisplayNum.textContent = prevNum + " " + operator;
+    currentNum ="";
+    currentDisplayNum.textContent = "";
+}
 }
