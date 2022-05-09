@@ -15,15 +15,20 @@ div {
 .display {
     height: 125px;
     background-color: white;
-    border: 4px;
+    border: 10px;
     border-color: black;
     border-style: solid;
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .currentNumber,
 .previousNumber {
     color: white;
+    font-size: 36px;
+    align-self: flex-end;
+    margin-top: auto;
 }
 
 .calcContainer {
