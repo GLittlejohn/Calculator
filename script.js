@@ -10,6 +10,18 @@ window.addEventListener("keydown", handleKeyBoard)
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", clearCalc);
 
+const plusMinus = document.querySelector(".plus-minus");
+plusMinus.addEventListener("click", posNeg)
+
+const percentage = document.querySelector(".percent");
+percentage.addEventListener("click", percent);
+
+const numberButtons = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+
+const decimal = document.querySelector(".decimal");
+decimal.addEventListener("click", addDecimal)
+
 function clearCalc() {
     currentNum = "";
     prevNum = "";
@@ -17,27 +29,15 @@ function clearCalc() {
     prevDisplayNum.textContent = "";
 }
 
-
-const plusMinus = document.querySelector(".plus-minus");
-plusMinus.addEventListener("click", posNeg)
-
 function posNeg() {
     currentNum = -1 * currentNum
     currentDisplayNum.textContent = currentNum
 }
 
-const percentage = document.querySelector(".percent");
-percentage.addEventListener("click", percent);
-
 function percent() {
     let tempNum = currentNum / 100; 
     currentDisplayNum.textContent = tempNum;
 }
-const numberButtons = document.querySelectorAll(".number");
-const operators = document.querySelectorAll(".operator");
-
-const decimal = document.querySelector(".decimal");
-decimal.addEventListener("click", addDecimal)
 
 function addDecimal() {
     if(!currentNum.includes(".")) {
