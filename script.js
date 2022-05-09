@@ -33,7 +33,17 @@ function percent() {
 }
 const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
+
 const decimal = document.querySelector(".decimal");
+decimal.addEventListener("click", addDecimal)
+
+function addDecimal() {
+    if(!currentNum.includes(".")) {
+        currentNum += ".";
+        currentDisplayNum.textContent = currentNum;
+    }
+}
+
 const equal = document.querySelector(".equal");
 equal.addEventListener("click", () => {
     if(currentNum!= "" && prevNum != "") {
