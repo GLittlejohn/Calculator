@@ -5,7 +5,7 @@ let operator = "";
 const currentDisplayNum = document.querySelector(".currentNumber");
 const prevDisplayNum = document.querySelector(".previousNumber");
 
-//window.addEventListener("keydown", handleKeyBoard)
+window.addEventListener("keydown", handleKeyBoard)
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", clearCalc);
@@ -101,6 +101,7 @@ function handleNumber(num) {
         currentNum += num;
         currentDisplayNum.textContent = currentNum;
     }
+}
 
 operators.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -129,33 +130,32 @@ function operatorCheck(text) {
     currentNum ="";
 }
 
-//function handleKeyBoard(e) {
-//    e.preventDefault();
-//    if(e.key >= 0 && e.key <= 9) {
-//        handleNumber(e.key);
-//    }
-//    if(e.key === "Enter" ||
-//    e.key === "=" && currentNum != "" && prevNum != "") {
-//        calc();
-//    }
-//    if(e.key === "+" || e.key === "-" || e.key === "/") {
-//        handleOperator(e.key);
-//    }
-//    if(e.key === "*") {
-//        handleOperator("X");
-//    }
-//    if(e.key === ".") {
-//        addDecimal();
-//    }
-//    if(e.key === "Backspace") {
-//        handleDelete();
-//    }
-//}
-//
-//function handleDelete() {
-//    if(currentNum != "") {
-//        currentNum = currentNum.slice(0, -1);
-//        currentDisplayNum.textContent = currentNum;
-//    }
-//}
-//}
+function handleKeyBoard(e) {
+    e.preventDefault();
+    if(e.key >= 0 && e.key <= 9) {
+        handleNumber(e.key);
+    }
+    if(e.key === "Enter" ||
+    e.key === "=" && currentNum != "" && prevNum != "") {
+        calc();
+    }
+    if(e.key === "+" || e.key === "-" || e.key === "/") {
+        handleOperator(e.key);
+    }
+    if(e.key === "*") {
+        handleOperator("X");
+    }
+    if(e.key === ".") {
+        addDecimal();
+    }
+    if(e.key === "Backspace") {
+        handleDelete();
+    }
+}
+
+function handleDelete() {
+    if(currentNum != "") {
+        currentNum = currentNum.slice(0, -1);
+        currentDisplayNum.textContent = currentNum;
+    }
+}
